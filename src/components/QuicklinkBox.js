@@ -2,11 +2,11 @@
 
 import React from 'react';
 
-const QuicklinkBox = ({props}) => {
+const QuicklinkBox = (props) => {
   return (
     <div className="quickink-outer">
-
-      <p className="quickink-box">quicklink box!!!!{console.log("woot woot")}</p>
+      <p>{props.quickboxKey}</p>
+      <p className="quickink-box">quicklink box!!!!</p>
     </div>
   )
 }
