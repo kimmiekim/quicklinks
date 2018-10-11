@@ -6,7 +6,7 @@ const QuicklinkBox = ({props}) => {
   return (
     <div className="quickink-outer">
 
-      <p className="quickink-box">quicklink box!!!!</p>
+      <p className="quickink-box">quicklink box!!!!{console.log("woot woot")}</p>
     </div>
   )
 }

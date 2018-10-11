@@ -21,7 +21,7 @@ class App extends Component {
     this.state= {
       isToggleOn: false,
       checkedItems: new Map(),
-      showQuicklinkComponent: [],
+      // showQuicklinkComponent: new Map(),
       checkboxes: Checkboxes
 
     };
@@ -53,21 +53,24 @@ class App extends Component {
       checkedItems: prev.checkedItems.set(item, isChecked),
     }));
 
-    this.state.checkedItems.get(item) == true? <QuicklinkBox />: console.log("no")
+    // this.state.checkedItems.get(item) == true? <QuicklinkBox />: console.log("yeeeeee")
 
     // console.log("quicklinks",this.state.showQuicklinkComponent)
   }
 
-  openQuicklinkBox(data){
-    // console.log("quick",this.checkedItems.get(data.name))
+  openQuicklinkBox() {
+    // this.state.checkedItems.forEach((key, value) => { key===true? <QuicklinkBox /> : console.log('no')})
+
   };
 
   render() {
+    const { checkedItems, isToggleOn, checkboxes } = this.state;
+
     return (
       <div className="App">
-        {this.state.showQuicklinkComponent? <QuicklinkBox />: ''}
+        {checkedItems.forEach((key, value) => { key===true? <QuicklinkBox /> : console.log('no')})}
         <button onClick= {this.openCheckbox}>click here</button>
-        {this.state.isToggleOn? <CheckboxList checkboxes={this.state.checkboxes} checkedItems={this.state.checkedItems} onHandleChange={this.addTocheckedItems} openQuicklinkBox={this.openQuicklinkBox} />: ''}
+        {isToggleOn? <CheckboxList checkboxes={checkboxes} checkedItems={checkedItems} onHandleChange={this.addTocheckedItems} openQuicklinkBox={this.openQuicklinkBox} />: ''}
         </div>
       )}
 }

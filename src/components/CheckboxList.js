@@ -36,7 +36,7 @@ export default class CheckboxList extends Component {
   // }
   changeCheckeditems = (data) => {
     this.props.onHandleChange(data);
-    this.props.openQuicklinkBox(data)
+    // this.props.openQuicklinkBox()
   }
 
   render() {
