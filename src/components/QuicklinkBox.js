@@ -2,15 +2,13 @@
 
 import React from 'react';
 
-const QuicklinkBox = (props) =>
-  {
-    // props.isChecked === true ? box : '';
-    // console.log(props)
-    <div>
-      <p>erin!</p>
-      {/* <p>{props.name}</p> */}
-    </div>
-  }
+const QuicklinkBox = ({props}) => {
+  return (
+    <div className="quickink-outer">
 
+      <p className="quickink-box">quicklink box!!!!</p>
+    </div>
+  )
+}
 
 export default QuicklinkBox;
