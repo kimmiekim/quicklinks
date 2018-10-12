@@ -21,7 +21,7 @@ class App extends Component {
     this.state= {
       isToggleOn: false,
       checkedItems: new Map(),
-      showQuicklinkComponent: {},
+      showQuicklinkComponent: [],
       checkboxes: Checkboxes
 
     };
@@ -29,7 +29,7 @@ class App extends Component {
     this.addTocheckedItems = this.addTocheckedItems.bind(this)
     this.openQuicklinkBox = this.openQuicklinkBox.bind(this)
 
-    console.log(this.state.checkboxes)
+
 
   }
 
@@ -42,18 +42,19 @@ class App extends Component {
   addTocheckedItems(event){
     const target = event.target;
     // const value = target.type === 'checked'? target.checked : target.value;
-    const value = target.value;
+    // const value = target.value;
     const item = target.name;
     const linkUrl = target.linkUrl;
     const imgUrl = target.imgUrl;
-    const isChecked = event.target.checked;
-    console.log('event', event)
+    const isChecked = target.checked;
+      console.log("get", this.state.showQuicklinkComponent)
+      console.log("link",target.value)
 
 
     this.setState( prev => ({
       checkedItems: prev.checkedItems.set(item, isChecked),
-    }));
 
+    }));
 
     // console.log("quicklinks",this.state.showQuicklinkComponent)
   }
@@ -64,11 +65,17 @@ class App extends Component {
 
   render() {
     const { checkedItems, isToggleOn, checkboxes, showQuicklinkComponent } = this.state;
+    const arr = Array.from(checkedItems);
+    let filteredArr =[];
+
+    arr.map(([key, value]) => value === true? filteredArr= checkboxes.filter(box => box.name == key) : 'null')
 
     return (
       <div className="App">
-        // {checkedItems.forEach((key, value) => { key===true? <QuicklinkBox /> : console.log('no')})}
-        {Array.from(checkedItems).map(([key, value]) => value===true? <QuicklinkBox quickboxKey={key} quickboxValue={value} /> : console.log('not quick', key) )}
+
+
+        {filteredArr.map((elem) => < QuicklinkBox quickboxName={elem.name} quickboxUrl={elem.linkUrl} quickboxImg={elem.imgUrl} /> )}
+
         <button onClick= {this.openCheckbox}>click here</button>
         {isToggleOn? <CheckboxList checkboxes={checkboxes} checkedItems={checkedItems} onHandleChange={this.addTocheckedItems} openQuicklinkBox={this.openQuicklinkBox} />: ''}
         </div>
