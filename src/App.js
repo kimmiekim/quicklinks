@@ -68,14 +68,13 @@ class App extends Component {
     const arr = Array.from(checkedItems);
     let filteredArr =[];
 
-    arr.map(([key, value]) => value === true? filteredArr= checkboxes.filter(box => box.name == key) : 'null')
+    arr.map(([key, value]) => value === true? filteredArr.push(checkboxes.filter(box => box.name == key)) : 'null');
+
 
     return (
       <div className="App">
-
-
-        {filteredArr.map((elem) => < QuicklinkBox quickboxName={elem.name} quickboxUrl={elem.linkUrl} quickboxImg={elem.imgUrl} /> )}
-
+        {filteredArr.map((elem) => < QuicklinkBox quickboxName={elem[0].name} quickboxUrl={elem[0].linkUrl} quickboxImg={elem[0].imgUrl} /> )}
+        {console.log("filteredArr", filteredArr.map(elem => console.log("name",elem[0].name)))}
         <button onClick= {this.openCheckbox}>click here</button>
         {isToggleOn? <CheckboxList checkboxes={checkboxes} checkedItems={checkedItems} onHandleChange={this.addTocheckedItems} openQuicklinkBox={this.openQuicklinkBox} />: ''}
         </div>
