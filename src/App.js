@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 
+import { withCookies, Cookies } from 'react-cookie';
+
 import Checkboxes from './components/Checkboxes';
 import Checkbox from './components/Checkbox';
 import CheckboxList from './components/CheckboxList';
@@ -18,6 +20,7 @@ class App extends Component {
 
   constructor(props){
     super(props);
+    
     this.state= {
       isToggleOn: false,
       checkedItems: new Map(),
@@ -76,9 +79,9 @@ class App extends Component {
         {filteredArr.map((elem) => < QuicklinkBox quickboxName={elem[0].name} quickboxUrl={elem[0].linkUrl} quickboxImg={elem[0].imgUrl} /> )}
         {console.log("filteredArr", filteredArr.map(elem => console.log("name",elem[0].name)))}
         <button onClick= {this.openCheckbox}>click here</button>
-        {isToggleOn? <CheckboxList checkboxes={checkboxes} checkedItems={checkedItems} onHandleChange={this.addTocheckedItems} openQuicklinkBox={this.openQuicklinkBox} />: ''}
+      {isToggleOn? <CheckboxList cookies={this.props.cookies} checkboxes={checkboxes} checkedItems={checkedItems} onHandleChange={this.addTocheckedItems} openQuicklinkBox={this.openQuicklinkBox} />: ''}
         </div>
       )}
 }
 
-export default App;
+export default withCookies(App);
