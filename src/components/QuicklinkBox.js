@@ -4,12 +4,11 @@ import React from 'react';
 
 const QuicklinkBox = (props) => {
   return (
-    <div className="quickink-outer">
+    <div className="quickinkbox">
       <p>Name: {props.quickboxName}</p>
-      <p>Url:{props.quickboxUrl}</p>
-      <p>Img: {props.quickboxImg}</p>
-      <p>{console.log("props", props)}</p>
-      <p className="quickink-box">quicklink box!!!!</p>
+
+      <img src={props.quickboxImg} />
+      <p><a href={props.quickboxUrl}>EXPLORE <i className="fa fa-chevron-right" aria-hidden="true">&nbsp;</i></a></p>
     </div>
   )
 }
