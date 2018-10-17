@@ -46,8 +46,9 @@ export default class CheckboxList extends Component {
         {
           checkboxes.map(data => (
             <label key={data.key}>
+              <Checkbox name={data.name} checked={checkedItems.get(data.name)} onChange={(data) => this.changeCheckeditems(data)} linkUrl={data.linkUrl} />
               {data.name}, {data.linkUrl}
-              <Checkbox name={data.name} checked={checkedItems.get(data.name)} onChange={(data) => this.changeCheckeditems(data)} linkUrl={data.linkUrl} /><br />
+              <br />
 
             </label>
 
